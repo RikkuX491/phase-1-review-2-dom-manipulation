@@ -3,39 +3,29 @@
  * Step 2 - Use .querySelector() to search for the element with the id of 'pet-list' and assign it as the value of the "petList" variable.
  */
 
-/*
- * Your code goes here
- */
+const petList = document.querySelector('#pet-list')
 
 /* Deliverable # 2: .createElement()
  * Step 1 - Declare a variable called "newPet".
  * Step 2 - Use .createElement() to create a new li element and assign it as the value of the "newPet" variable.
  */
 
-/*
- * Your code goes here
- */
+const newPet = document.createElement('li')
 
 // Deliverable # 3: .textContent - Change the textContent of "newPet" to any pet of your choosing (for example: "Guinea Pig")
 
-/*
- * Your code goes here
- */
+newPet.textContent = "Guinea Pig"
 
 // Deliverable # 4: .appendChild() - Use .appendChild() to append "newPet" (the new li element you created) to "petList" (the ol containing all of the pets).
 
-/*
- * Your code goes here
- */
+petList.append(newPet)
 
 /* Deliverable # 5: .querySelectorAll()
  * Step 1 - Declare a variable called "divs".
  * Step 2 - Use .querySelectorAll() to search for all div elements and assign it as the value of the "divs" variable.
  */
 
-/*
- * Your code goes here
- */
+const divs = document.querySelectorAll('div')
 
 /* Deliverable # 6: .forEach()
  * Step 1 - Use .forEach() to iterate through each of the div elements contained inside of the "divs" variable.
@@ -46,35 +36,34 @@
  * Step 6 - On the next line, inside of the function body of the callback function, use .appendChild() to append "copyrightElement" (the new h2 element you created) to "div" (the argument of the callback function representing each div element contained within the "divs" variable).
  */
 
-/*
- * Your code goes here
- */
+divs.forEach(div => {
+    const copyrightElement = document.createElement('h2')
+    
+    // .substring(1) is being used to trim off the Â character that appears in front of the © character
+    copyrightElement.textContent = "© 2022 Ricardo Guerra".substring(1)
+
+    div.appendChild(copyrightElement)
+})
 
 /* Deliverable # 7: .getElementById()
  * Step 1 - Declare a variable called "notAShop".
  * Step 2 - Use .getElementById() to search for the element with the id of 'not-a-shop' and assign it as the value of the "notAShop" variable.
  */
 
-/*
- * Your code goes here
- */
+const notAShop = document.getElementById('not-a-shop')
 
 /* Deliverable # 8: .remove()
  * Step 1 - Use .remove() to remove the element with the id of 'not-a-shop' from the DOM. You already have a variable named "notAShop" that references this element.
  */
 
-/*
- * Your code goes here
- */
+notAShop.remove()
 
 /* Deliverable # 9: .getElementsByClassName()
  * Step 1 - Declare a variable called "shops".
  * Step 2 - Use .getElementsByClassName() to search for all elements with the class of "shop" and assign it as the value of the "shops" variable.
  */
 
-/*
- * Your code goes here
- */
+const shops = document.getElementsByClassName('shop')
 
 /* Deliverable # 10: while loop
  * Step 1 - Declare a variable called "counter" using let and initialize "counter" with a value of 0.
@@ -86,12 +75,41 @@
  * Step 6 - Don't forget to increment the value of the "counter" on the last line inside of the while loop!
  */
 
-/*
- * Your code goes here
- */
+let counter = 0
+while(counter < shops.length){
+    const button = document.createElement('button')
+    button.textContent = 'Like This Shop'
+    shops[counter].appendChild(button)
+    counter++
+}
 
 // Bonus Deliverable: Finish creating the Candy Shop! There is already a div with the id of "candy-shop" currently set up for you.
 
-/*
- * Your code goes here
- */
+// A reference to the HTML element with the id 'candy-shop'.
+const candyShop = document.getElementById('candy-shop')
+
+// Get a copy of the h2 (copyright) and button elements to re-append later on.
+const candyShopCopyrightAndButton = [...candyShop.childNodes]
+
+// Clear out the HTML code inside of candyShop.
+candyShop.innerHTML = ''
+
+// Create Candy Shop Title
+const candyShopTitle = document.createElement('h1')
+candyShopTitle.id = 'candy-shop-title'
+candyShopTitle.textContent = 'Candy Shop'
+candyShop.append(candyShopTitle)
+
+// Create Candy List and add List Items to the Candy List
+const candyList = document.createElement('ol')
+candyList.id = 'candy-list'
+candyShop.append(candyList)
+const candies = ['Snickers', 'M&Ms', 'Kit Kat', 'Hersheys']
+candies.forEach(candy => {
+    const candyLI = document.createElement('li')
+    candyLI.textContent = candy
+    candyList.append(candyLI)
+})
+
+// Re-append the h2 (copyright) and button elements to candyShop
+candyShopCopyrightAndButton.forEach(element => candyShop.append(element))
